@@ -1,0 +1,116 @@
+.cta {
+  --cta-bg: var(--accent-cta);
+  --cta-bg-strong: var(--accent-cta-strong);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.1rem;
+  border-radius: 4px;
+  background: var(--cta-bg);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  /* kept >= 18.67px (14pt bold) so white-on-cta-red clears WCAG AA's
+     3:1 large-text threshold at every viewport — see contrast note in README. */
+  font-size: clamp(1.2rem, 1.14rem + 0.3vw, 1.3rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  isolation: isolate;
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.cta:hover {
+  background: var(--cta-bg-strong);
+  transform: translateY(-1px);
+}
+
+.cta:active {
+  transform: translateY(0);
+}
+
+.cta:focus-visible {
+  outline: 3px solid var(--accent-glow);
+  outline-offset: 3px;
+}
+
+.cta[data-confirmed] {
+  --cta-bg: var(--paper);
+  --cta-bg-strong: var(--paper);
+  color: var(--accent-cta);
+}
+
+.label {
+  position: relative;
+  display: grid;
+  grid-template-areas: "stack";
+  place-items: center;
+}
+
+.labelDefault,
+.labelConfirm {
+  grid-area: stack;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.labelDefault {
+  opacity: 1;
+  transform: none;
+}
+
+.labelConfirm {
+  opacity: 0;
+  transform: scale(0.9) rotate(-4deg);
+  border: 2px solid currentColor;
+  padding: 0.15rem 0.55rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.cta[data-confirmed] .labelDefault {
+  opacity: 0;
+}
+
+.cta[data-confirmed] .labelConfirm {
+  opacity: 1;
+  transform: scale(1) rotate(-4deg);
+}
+
+/* variants */
+
+.sticky {
+  width: 100%;
+  border-radius: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.compact {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta,
+  .labelDefault,
+  .labelConfirm {
+    transition: none;
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+
+  .labelConfirm {
+    transform: rotate(-4deg);
+  }
+
+  .cta[data-confirmed] .labelConfirm {
+    transform: rotate(-4deg);
+  }
+}

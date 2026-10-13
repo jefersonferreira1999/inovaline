@@ -1,0 +1,96 @@
+.section {
+  background: var(--paper);
+  color: var(--ink);
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.number {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.numberRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  line-height: 0.85;
+}
+
+.numberDigits {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(5.5rem, 4rem + 9vw, 11rem);
+  /* ink, not --accent-cta: that red is reserved for the CTA alone. */
+  color: var(--ink);
+}
+
+.numberLabel {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 2.2rem);
+  color: var(--ink);
+}
+
+.numberTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 70%, transparent);
+}
+
+.tagStub {
+  width: 1.4rem;
+  height: 1px;
+  background: var(--ink);
+  position: relative;
+  flex: none;
+}
+
+.tagStub::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translateY(-50%);
+}
+
+.copy {
+  max-width: 46ch;
+}
+
+.heading {
+  font-size: clamp(1.7rem, 1.35rem + 1.6vw, 2.6rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.body {
+  margin-top: 1.2rem;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
