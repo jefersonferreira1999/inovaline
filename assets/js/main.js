@@ -52,11 +52,12 @@
 
 	// Menu.
 		$('#menu')
-			.append('<a href="#menu" class="close"></a>')
+			.append('<a href="#menu" class="close" aria-label="Fechar menu"></a>')
 			.appendTo($body)
 			.panel({
 				delay: 500,
 				hideOnClick: true,
+				hideOnEscape: true,
 				hideOnSwipe: true,
 				resetScroll: true,
 				resetForms: true,

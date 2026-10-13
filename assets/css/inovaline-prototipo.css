@@ -1,0 +1,258 @@
+/* Protótipo isolado: fotografia e produto como foco principal. */
+/* Marca sempre legível; a superfície do cabeçalho aparece suavemente ao rolar. */
+#header {
+  height: 80px;
+  line-height: 80px;
+  background: rgba(11,18,32,.94);
+  border-bottom: 1px solid rgba(245,241,230,.12);
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color 550ms ease, box-shadow 550ms ease, border-color 550ms ease, backdrop-filter 550ms ease;
+}
+#header.alt {
+  background: rgba(11,18,32,.22);
+  border-color: transparent;
+  box-shadow: none;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+}
+#header h1, #header.alt h1 {
+  left: clamp(1rem, 3vw, 3rem);
+  margin: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 550ms ease;
+}
+#header.alt h1 { transform: translateY(3px); }
+#header h1 a.inova-brand {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  line-height: 1;
+  text-transform: none;
+}
+.inova-brand img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.inova-brand-text {
+  display: block;
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #f5f1e6;
+  text-shadow: 0 2px 12px rgba(0,0,0,.5);
+}
+.inova-brand-text small {
+  display: block;
+  font-family: 'Archivo', sans-serif;
+  font-size: .62rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: .12em;
+  margin-top: .35rem;
+}
+#header nav > ul > li > a.menuToggle { display: flex; align-items: center; height: 80px; }
+#header nav > ul > li > a.menuToggle::after { height: 1rem; }
+#header a:focus-visible { outline: 2px solid #ffb74a; outline-offset: 4px; }
+#header nav > ul > li > a.menuToggle:focus-visible { outline: 2px solid #ffb74a; outline-offset: -6px; }
+section[id] { scroll-margin-top: 90px; }
+@media screen and (max-width: 736px) {
+  #header { height: 68px; line-height: 68px; }
+  #header nav > ul > li > a.menuToggle { height: 68px; padding: 0 1rem; }
+  #header h1 a.inova-brand { gap: .6rem; }
+  .inova-brand img { width: 42px; height: 42px; }
+  .inova-brand-text { font-size: 1.5rem; }
+  .inova-brand-text small { font-size: .53rem; }
+  section[id] { scroll-margin-top: 78px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #header, #header h1, #header.alt h1 { transition: none; transform: none; }
+}
+body.landing #page-wrapper {
+  background-attachment: fixed;
+}
+#two.wrapper.alt,
+#two .spotlight .content {
+  background: transparent;
+}
+#two .spotlight {
+  align-items: center;
+}
+#two .spotlight .image {
+  width: 58%;
+  background: #0b1220;
+}
+#two .spotlight .image img {
+  display: block;
+  width: 100%;
+  height: clamp(340px, 36vw, 480px);
+  object-fit: contain;
+}
+#two .spotlight .content {
+  width: 42%;
+  padding: clamp(2rem, 4vw, 5rem);
+  text-shadow: none;
+}
+#two .spotlight .content h2 {
+  color: #f5f1e6;
+  font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+  line-height: 1.08;
+  margin-bottom: .65em;
+}
+#two .spotlight .content p {
+  color: #f5f1e6;
+  font-size: .95rem;
+  line-height: 1.8;
+  letter-spacing: .015em;
+  max-width: 36ch;
+  margin-bottom: 0;
+}
+#two .spotlight .content .inova-project-category {
+  color: #ffb74a;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.inova-services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.inova-service-card { flex: 0 1 calc((100% - 3.75em) / 4); }
+.inova-portfolio figure { overflow: hidden; }
+.inova-portfolio figcaption { line-height: 1.6; }
+.inova-client-names {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 2rem 0 0;
+  list-style: none;
+}
+.inova-client-names li {
+  padding: 1.5rem 1rem;
+  font-family: 'Big Shoulders', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0b1220;
+}
+@media screen and (max-width: 980px) {
+  .inova-service-card { flex-basis: calc((100% - 1.25em) / 2); }
+  #two .spotlight { display: flex; flex-direction: column; }
+  #two .spotlight .image { width: 100%; order: 0; }
+  #two .spotlight .image img { height: auto; max-height: 65vh; }
+  #two .spotlight .content { width: 100%; text-align: left; padding: 2.5rem 1.5rem 3rem; }
+  #two .spotlight .content p { max-width: 52ch; }
+}
+@media screen and (max-width: 600px) {
+  .inova-service-card { flex-basis: 100%; }
+}
+/* O template remove o fundo global no celular; esta camada o mantém contínuo. */
+body.is-mobile.landing #page-wrapper {
+  background: none !important;
+  isolation: isolate;
+}
+body.is-mobile.landing #page-wrapper::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(rgba(11,18,32,.78), rgba(11,18,32,.78)), url('../../images/inovaline/hero-mobile-letreiro-sanfer.jpg') center / cover no-repeat;
+}
+body.is-mobile.landing #banner,
+body.is-mobile.landing #orcamento { background: transparent !important; }
+@media (prefers-reduced-motion: reduce) {
+  .inova-more-arrow { animation: none; }
+}
+
+/* Projetos: foto de fundo entre os cards e superfície escura para leitura. */
+#two.wrapper.alt { padding: 5rem max(1.25rem, calc((100vw - 1280px) / 2)); }
+#two .inova-project-intro { max-width: 42rem; margin-bottom: 2.5rem; text-shadow: 0 2px 12px #0b1220; }
+#two .inova-project-intro h2 { color: #f5f1e6; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; }
+#two .inova-project-intro p { color: #f5f1e6; letter-spacing: .01em; }
+#two .spotlight {
+  border: 1px solid rgba(245,241,230,.2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background: rgba(11,18,32,.88);
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
+}
+#two .inova-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: #ffb74a;
+  margin-top: 1.5rem;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border-bottom: 1px solid rgba(255,183,74,.45);
+  padding-bottom: .35rem;
+}
+#two .inova-project-link:hover { color: #fff; }
+#two .inova-project-link:focus-visible { outline: 2px solid #ffb74a; outline-offset: 6px; }
+#parceiros { padding: 4rem 0; }
+#parceiros .inner { max-width: 1100px; width: calc(100% - 3rem); }
+#parceiros header.major h2 { font-size: clamp(2rem, 3vw, 3rem); line-height: 1.15; margin-bottom: .75rem; }
+#parceiros header.major p { color: #384252; letter-spacing: .01em; max-width: 48ch; margin: 0 auto; }
+.inova-client-names li {
+  min-height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(11,18,32,.1);
+  border-radius: 8px;
+}
+.inova-client-names img { display: block; width: 100%; max-width: 240px; height: 80px; object-fit: contain; }
+.inova-client-names a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: 130px;
+  border: 0;
+  color: #0b1220;
+}
+.inova-client-names a span {
+  font-family: 'Archivo', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .01em;
+}
+.inova-client-names img.inova-partner-avatar { width: 80px; height: 80px; border-radius: 6px; }
+.inova-client-names img.inova-partner-wide { width: 100%; height: 80px; }
+.inova-client-names a:hover { color: #a94425; }
+.inova-client-names a:focus-visible { outline: 2px solid #a94425; outline-offset: 6px; border-radius: 4px; }
+@media screen and (max-width: 980px) {
+  .inova-client-names { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media screen and (max-width: 600px) {
+  #two.wrapper.alt { padding: 3rem 1rem; }
+  #two .spotlight .content { padding: 2rem 1.5rem; }
+  .inova-client-names { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .inova-client-names li { padding: 1rem; min-height: 100px; font-size: 1.2rem; }
+  .inova-client-names img { height: 64px; }
+}
+
+/* O cabeçalho da seção não deve inverter a alternância das fotos. */
+@media screen and (min-width: 981px) {
+  #two > .spotlight:nth-of-type(odd) { flex-direction: row; }
+  #two > .spotlight:nth-of-type(even) { flex-direction: row-reverse; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inova-signswitch-frame img,
+  .inova-switch-track,
+  .inova-switch-knob { transition: none; }
+}
